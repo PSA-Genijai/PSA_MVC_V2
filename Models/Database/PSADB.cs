@@ -39,7 +39,9 @@ namespace PSA_MVC_V2.Models.Database
         public virtual DbSet<RoomType> RoomTypes { get; set; } = null!;
         public virtual DbSet<RouteCategory> RouteCategories { get; set; } = null!;
         public virtual DbSet<RoutePoint> RoutePoints { get; set; } = null!;
+        public virtual DbSet<TimeTable> TimeTables { get; set; } = null!;
         public virtual DbSet<Worker> Workers { get; set; } = null!;
+        public virtual DbSet<WorkerSchedule> WorkerSchedules { get; set; } = null!;
         public virtual DbSet<WorkerType> WorkerTypes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -330,6 +332,15 @@ namespace PSA_MVC_V2.Models.Database
                     .HasForeignKey(d => d.FkWorkerTypeworkerTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("workerType");
+            });
+
+            modelBuilder.Entity<WorkerSchedule>(entity =>
+            {
+                entity.HasOne(d => d.FkTimeTable)
+                    .WithMany(p => p.WorkerSchedules)
+                    .HasForeignKey(d => d.FkTimeTableId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Worker_schedule_Time_table");
             });
 
             OnModelCreatingPartial(modelBuilder);
