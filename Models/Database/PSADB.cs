@@ -16,31 +16,31 @@ namespace PSA_MVC_V2.Models.Database
         {
         }
 
-        public virtual DbSet<Alergena> Alergenas { get; set; } = null!;
-        public virtual DbSet<Darbuotoja> Darbuotojas { get; set; } = null!;
-        public virtual DbSet<DarbuotojoTipa> DarbuotojoTipas { get; set; } = null!;
-        public virtual DbSet<Ekskursija> Ekskursijas { get; set; } = null!;
-        public virtual DbSet<EkskursijosPunkta> EkskursijosPunktas { get; set; } = null!;
-        public virtual DbSet<Gedima> Gedimas { get; set; } = null!;
-        public virtual DbSet<GedimoTipa> GedimoTipas { get; set; } = null!;
-        public virtual DbSet<Gida> Gidas { get; set; } = null!;
-        public virtual DbSet<KambarioIvertinima> KambarioIvertinimas { get; set; } = null!;
-        public virtual DbSet<KambarioPrivaluma> KambarioPrivalumas { get; set; } = null!;
-        public virtual DbSet<KambarioPrivalumai> KambarioPrivalumais { get; set; } = null!;
-        public virtual DbSet<KambarioStatusa> KambarioStatusas { get; set; } = null!;
-        public virtual DbSet<KambarioTipa> KambarioTipas { get; set; } = null!;
-        public virtual DbSet<Kambary> Kambarys { get; set; } = null!;
-        public virtual DbSet<KorespondecijaGavejai> KorespondecijaGavejais { get; set; } = null!;
-        public virtual DbSet<Korespondencija> Korespondencijas { get; set; } = null!;
-        public virtual DbSet<MarsrutoPunktai> MarsrutoPunktais { get; set; } = null!;
-        public virtual DbSet<PapildomosPaslaugo> PapildomosPaslaugos { get; set; } = null!;
-        public virtual DbSet<Patiekala> Patiekalas { get; set; } = null!;
-        public virtual DbSet<Pranesima> Pranesimas { get; set; } = null!;
-        public virtual DbSet<PunktuKategorijo> PunktuKategorijos { get; set; } = null!;
-        public virtual DbSet<Rezervacija> Rezervacijas { get; set; } = null!;
-        public virtual DbSet<RezervacijosStatusa> RezervacijosStatusas { get; set; } = null!;
-        public virtual DbSet<Saskaitum> Saskaita { get; set; } = null!;
-        public virtual DbSet<Svecia> Svecias { get; set; } = null!;
+        public virtual DbSet<AdditionalService> AdditionalServices { get; set; } = null!;
+        public virtual DbSet<Bill> Bills { get; set; } = null!;
+        public virtual DbSet<Correspondence> Correspondences { get; set; } = null!;
+        public virtual DbSet<CorrespondenceRecipient> CorrespondenceRecipients { get; set; } = null!;
+        public virtual DbSet<Dish> Dishes { get; set; } = null!;
+        public virtual DbSet<Excursion> Excursions { get; set; } = null!;
+        public virtual DbSet<ExcursionPoint> ExcursionPoints { get; set; } = null!;
+        public virtual DbSet<Failure> Failures { get; set; } = null!;
+        public virtual DbSet<FailureType> FailureTypes { get; set; } = null!;
+        public virtual DbSet<Guest> Guests { get; set; } = null!;
+        public virtual DbSet<Guide> Guides { get; set; } = null!;
+        public virtual DbSet<Ingredient> Ingredients { get; set; } = null!;
+        public virtual DbSet<Message> Messages { get; set; } = null!;
+        public virtual DbSet<Reservation> Reservations { get; set; } = null!;
+        public virtual DbSet<ReservationStatus> ReservationStatuses { get; set; } = null!;
+        public virtual DbSet<Room> Rooms { get; set; } = null!;
+        public virtual DbSet<RoomBenefit> RoomBenefits { get; set; } = null!;
+        public virtual DbSet<RoomBenefit1> RoomBenefits1 { get; set; } = null!;
+        public virtual DbSet<RoomEvaluation> RoomEvaluations { get; set; } = null!;
+        public virtual DbSet<RoomStatus> RoomStatuses { get; set; } = null!;
+        public virtual DbSet<RoomType> RoomTypes { get; set; } = null!;
+        public virtual DbSet<RouteCategory> RouteCategories { get; set; } = null!;
+        public virtual DbSet<RoutePoint> RoutePoints { get; set; } = null!;
+        public virtual DbSet<Worker> Workers { get; set; } = null!;
+        public virtual DbSet<WorkerType> WorkerTypes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -53,358 +53,337 @@ namespace PSA_MVC_V2.Models.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Alergena>(entity =>
+            modelBuilder.Entity<AdditionalService>(entity =>
             {
-                entity.HasKey(e => e.AlergenasId)
-                    .HasName("PK__Alergena__C4642F98F8B71D8B");
+                entity.HasKey(e => e.AddServicesId)
+                    .HasName("PK__Addition__E581FBE1569B85BA");
 
-                entity.Property(e => e.AlergenasId).ValueGeneratedNever();
+                entity.Property(e => e.AddServicesId).ValueGeneratedNever();
 
-                entity.HasOne(d => d.FkPatiekalaspatiekalas)
-                    .WithMany(p => p.Alergenas)
-                    .HasForeignKey(d => d.FkPatiekalaspatiekalasId)
+                entity.HasOne(d => d.FkReservationreservation)
+                    .WithMany(p => p.AdditionalServices)
+                    .HasForeignKey(d => d.FkReservationreservationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("nurodyti");
+                    .HasConstraintName("hasFeatures");
             });
 
-            modelBuilder.Entity<Darbuotoja>(entity =>
+            modelBuilder.Entity<Bill>(entity =>
             {
-                entity.HasKey(e => e.DId)
-                    .HasName("PK__Darbuoto__D95F582BFDB3D52A");
+                entity.Property(e => e.BillId).ValueGeneratedNever();
 
-                entity.Property(e => e.DId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkDarbuotojoTipasdarbTipas)
-                    .WithMany(p => p.Darbuotojas)
-                    .HasForeignKey(d => d.FkDarbuotojoTipasdarbTipasId)
+                entity.HasOne(d => d.FkGuestg)
+                    .WithMany(p => p.Bills)
+                    .HasForeignKey(d => d.FkGuestgId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("nurodoTipa");
+                    .HasConstraintName("pays");
+            });
 
-                entity.HasOne(d => d.FkPranesimaspranesimas)
-                    .WithMany(p => p.Darbuotojas)
-                    .HasForeignKey(d => d.FkPranesimaspranesimasId)
+            modelBuilder.Entity<Correspondence>(entity =>
+            {
+                entity.HasKey(e => e.MessageId)
+                    .HasName("PK__Correspo__0BBF6EE65F9B06F1");
+
+                entity.Property(e => e.MessageId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkWorkerw)
+                    .WithMany(p => p.Correspondences)
+                    .HasForeignKey(d => d.FkWorkerwId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("atsisiunciaPranesima");
+                    .HasConstraintName("sender");
             });
 
-            modelBuilder.Entity<DarbuotojoTipa>(entity =>
-            {
-                entity.HasKey(e => e.DarbTipasId)
-                    .HasName("PK__Darbuoto__FF76D8316E909308");
-
-                entity.Property(e => e.DarbTipasId).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<Ekskursija>(entity =>
-            {
-                entity.HasKey(e => e.EksId)
-                    .HasName("PK__Ekskursi__A8CA98727F255A39");
-
-                entity.Property(e => e.EksId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkPapildomosPaslaugospapPaslaugos)
-                    .WithMany(p => p.Ekskursijas)
-                    .HasForeignKey(d => d.FkPapildomosPaslaugospapPaslaugosId)
-                    .HasConstraintName("itrauktos");
-            });
-
-            modelBuilder.Entity<EkskursijosPunkta>(entity =>
-            {
-                entity.HasKey(e => new { e.FkEkskursijaeksId, e.FkMarsrutoPunktaipunktoId })
-                    .HasName("PK__ekskursi__3C36437BF8207CFA");
-
-                entity.HasOne(d => d.FkEkskursijaeks)
-                    .WithMany(p => p.EkskursijosPunkta)
-                    .HasForeignKey(d => d.FkEkskursijaeksId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("ekskursijosPunktas1");
-            });
-
-            modelBuilder.Entity<Gedima>(entity =>
-            {
-                entity.HasKey(e => e.GedimasId)
-                    .HasName("PK__Gedimas__FC4D7570CCA7D1F8");
-
-                entity.Property(e => e.GedimasId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkDarbuotojasd)
-                    .WithMany(p => p.Gedimas)
-                    .HasForeignKey(d => d.FkDarbuotojasdId)
-                    .HasConstraintName("sukuriaGedima");
-
-                entity.HasOne(d => d.FkGedimoTipasidGedimoTipasNavigation)
-                    .WithMany(p => p.Gedimas)
-                    .HasForeignKey(d => d.FkGedimoTipasidGedimoTipas)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("parodoTipa");
-            });
-
-            modelBuilder.Entity<GedimoTipa>(entity =>
-            {
-                entity.HasKey(e => e.IdGedimoTipas)
-                    .HasName("PK__GedimoTi__9A20E925D4E56154");
-
-                entity.Property(e => e.IdGedimoTipas).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<Gida>(entity =>
-            {
-                entity.HasKey(e => e.GId)
-                    .HasName("PK__Gidas__49FB61C48CC41661");
-
-                entity.Property(e => e.GId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkEkskursijaeks)
-                    .WithMany(p => p.Gida)
-                    .HasForeignKey(d => d.FkEkskursijaeksId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("veda");
-            });
-
-            modelBuilder.Entity<KambarioIvertinima>(entity =>
-            {
-                entity.HasKey(e => e.KambIvertinimasId)
-                    .HasName("PK__Kambario__270302948B1CCC60");
-
-                entity.Property(e => e.KambIvertinimasId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkKambarysidKambarysNavigation)
-                    .WithMany(p => p.KambarioIvertinimas)
-                    .HasForeignKey(d => d.FkKambarysidKambarys)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("ivertina");
-
-                entity.HasOne(d => d.FkSveciass)
-                    .WithMany(p => p.KambarioIvertinimas)
-                    .HasForeignKey(d => d.FkSveciassId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("apraso");
-            });
-
-            modelBuilder.Entity<KambarioPrivaluma>(entity =>
-            {
-                entity.HasKey(e => e.PrivalumasId)
-                    .HasName("PK__Kambario__AA2B248E2B7371C9");
-
-                entity.Property(e => e.PrivalumasId).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<KambarioPrivalumai>(entity =>
-            {
-                entity.HasKey(e => e.KambPrivalumaiId)
-                    .HasName("PK__Kambario__585408EF2BA6090D");
-
-                entity.Property(e => e.KambPrivalumaiId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkKambarioPrivalumasprivalumas)
-                    .WithMany(p => p.KambarioPrivalumais)
-                    .HasForeignKey(d => d.FkKambarioPrivalumasprivalumasId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("turiPrivalumus");
-
-                entity.HasOne(d => d.FkKambarysidKambarysNavigation)
-                    .WithMany(p => p.KambarioPrivalumais)
-                    .HasForeignKey(d => d.FkKambarysidKambarys)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("priskiriami");
-            });
-
-            modelBuilder.Entity<KambarioStatusa>(entity =>
-            {
-                entity.HasKey(e => e.KambStatusasId)
-                    .HasName("PK__Kambario__AF2BC7159AE37C1E");
-
-                entity.Property(e => e.KambStatusasId).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<KambarioTipa>(entity =>
-            {
-                entity.HasKey(e => e.KambTipasId)
-                    .HasName("PK__Kambario__C4CDD5585B1A0B2B");
-
-                entity.Property(e => e.KambTipasId).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<Kambary>(entity =>
-            {
-                entity.HasKey(e => e.IdKambarys)
-                    .HasName("PK__Kambarys__27DA93E240DE345A");
-
-                entity.Property(e => e.IdKambarys).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkKambarioStatusaskambStatusas)
-                    .WithMany(p => p.Kambaries)
-                    .HasForeignKey(d => d.FkKambarioStatusaskambStatusasId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("nurodoma");
-
-                entity.HasOne(d => d.FkKambarioTipaskambTipas)
-                    .WithMany(p => p.Kambaries)
-                    .HasForeignKey(d => d.FkKambarioTipaskambTipasId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("priskiriama");
-            });
-
-            modelBuilder.Entity<KorespondecijaGavejai>(entity =>
+            modelBuilder.Entity<CorrespondenceRecipient>(entity =>
             {
                 entity.HasKey(e => e.EntryId)
-                    .HasName("PK__Korespon__810FDCE19CDC1C5D");
+                    .HasName("PK__Correspo__810FDCE1EF5CB41A");
 
                 entity.Property(e => e.EntryId).ValueGeneratedNever();
 
-                entity.HasOne(d => d.FkDarbuotojasd)
-                    .WithMany(p => p.KorespondecijaGavejais)
-                    .HasForeignKey(d => d.FkDarbuotojasdId)
+                entity.HasOne(d => d.FkCorrespondencemessage)
+                    .WithMany(p => p.CorrespondenceRecipients)
+                    .HasForeignKey(d => d.FkCorrespondencemessageId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Korespond__fk_Da__5B0E7E4A");
+                    .HasConstraintName("FK__Correspon__fk_Co__2665ABE1");
 
-                entity.HasOne(d => d.FkKorespondencijazinute)
-                    .WithMany(p => p.KorespondecijaGavejais)
-                    .HasForeignKey(d => d.FkKorespondencijazinuteId)
+                entity.HasOne(d => d.FkWorkerw)
+                    .WithMany(p => p.CorrespondenceRecipients)
+                    .HasForeignKey(d => d.FkWorkerwId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Korespond__fk_Ko__5C02A283");
+                    .HasConstraintName("FK__Correspon__fk_Wo__257187A8");
             });
 
-            modelBuilder.Entity<Korespondencija>(entity =>
+            modelBuilder.Entity<Dish>(entity =>
             {
-                entity.HasKey(e => e.ZinuteId)
-                    .HasName("PK__Korespon__B791943390F213B2");
+                entity.Property(e => e.DishId).ValueGeneratedNever();
 
-                entity.Property(e => e.ZinuteId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkDarbuotojasd)
-                    .WithMany(p => p.Korespondencijas)
-                    .HasForeignKey(d => d.FkDarbuotojasdId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("siuntejas");
+                entity.HasOne(d => d.FkAdditionalServicesaddServices)
+                    .WithMany(p => p.Dishes)
+                    .HasForeignKey(d => d.FkAdditionalServicesaddServicesId)
+                    .HasConstraintName("included2");
             });
 
-            modelBuilder.Entity<MarsrutoPunktai>(entity =>
+            modelBuilder.Entity<Excursion>(entity =>
             {
-                entity.HasKey(e => e.PunktoId)
-                    .HasName("PK__Marsruto__E44273F3919D4752");
+                entity.HasKey(e => e.ExId)
+                    .HasName("PK__Excursio__F6D3E489E90EC2BA");
 
-                entity.Property(e => e.PunktoId).ValueGeneratedNever();
+                entity.Property(e => e.ExId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkAdditionalServicesaddServices)
+                    .WithMany(p => p.Excursions)
+                    .HasForeignKey(d => d.FkAdditionalServicesaddServicesId)
+                    .HasConstraintName("included1");
             });
 
-            modelBuilder.Entity<PapildomosPaslaugo>(entity =>
+            modelBuilder.Entity<ExcursionPoint>(entity =>
             {
-                entity.HasKey(e => e.PapPaslaugosId)
-                    .HasName("PK__Papildom__F11097094F5B0440");
+                entity.HasKey(e => new { e.FkExcursionexId, e.FkRoutePointspointId })
+                    .HasName("PK__excursio__ED529A56F4892325");
 
-                entity.Property(e => e.PapPaslaugosId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkRezervacijarezervacija)
-                    .WithMany(p => p.PapildomosPaslaugos)
-                    .HasForeignKey(d => d.FkRezervacijarezervacijaId)
+                entity.HasOne(d => d.FkExcursionex)
+                    .WithMany(p => p.ExcursionPoints)
+                    .HasForeignKey(d => d.FkExcursionexId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("turiPaslaugas");
+                    .HasConstraintName("excursionPoint1");
             });
 
-            modelBuilder.Entity<Patiekala>(entity =>
+            modelBuilder.Entity<Failure>(entity =>
             {
-                entity.HasKey(e => e.PatiekalasId)
-                    .HasName("PK__Patiekal__0C0E1A00E4831D61");
+                entity.Property(e => e.FailureId).ValueGeneratedNever();
 
-                entity.Property(e => e.PatiekalasId).ValueGeneratedNever();
+                entity.HasOne(d => d.FkFailureTypeidFailureTypeNavigation)
+                    .WithMany(p => p.Failures)
+                    .HasForeignKey(d => d.FkFailureTypeidFailureType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("displayType");
 
-                entity.HasOne(d => d.FkPapildomosPaslaugospapPaslaugos)
-                    .WithMany(p => p.Patiekalas)
-                    .HasForeignKey(d => d.FkPapildomosPaslaugospapPaslaugosId)
-                    .HasConstraintName("itraukti");
+                entity.HasOne(d => d.FkWorkerw)
+                    .WithMany(p => p.Failures)
+                    .HasForeignKey(d => d.FkWorkerwId)
+                    .HasConstraintName("createdFailure");
             });
 
-            modelBuilder.Entity<Pranesima>(entity =>
+            modelBuilder.Entity<FailureType>(entity =>
             {
-                entity.HasKey(e => e.PranesimasId)
-                    .HasName("PK__Pranesim__A9F8922B046F447B");
+                entity.HasKey(e => e.IdFailureType)
+                    .HasName("PK__FailureT__7B28DC197C849FE0");
 
-                entity.Property(e => e.PranesimasId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkSveciass)
-                    .WithMany(p => p.Pranesimas)
-                    .HasForeignKey(d => d.FkSveciassId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("issiunciaPranesima");
+                entity.Property(e => e.IdFailureType).ValueGeneratedNever();
             });
 
-            modelBuilder.Entity<PunktuKategorijo>(entity =>
+            modelBuilder.Entity<Guest>(entity =>
             {
-                entity.HasKey(e => e.KategorijosId)
-                    .HasName("PK__PunktuKa__83E43221531B58B7");
+                entity.HasKey(e => e.GId)
+                    .HasName("PK__Guest__49FB61C4EC69F88A");
 
-                entity.Property(e => e.KategorijosId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkMarsrutoPunktaipunkto)
-                    .WithMany(p => p.PunktuKategorijos)
-                    .HasForeignKey(d => d.FkMarsrutoPunktaipunktoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("priklauso");
+                entity.Property(e => e.GId).ValueGeneratedNever();
             });
 
-            modelBuilder.Entity<Rezervacija>(entity =>
+            modelBuilder.Entity<Guide>(entity =>
             {
-                entity.Property(e => e.RezervacijaId).ValueGeneratedNever();
+                entity.HasKey(e => e.GId)
+                    .HasName("PK__Guide__49FB61C43528AFAA");
 
-                entity.HasOne(d => d.FkDarbuotojasd)
-                    .WithMany(p => p.Rezervacijas)
-                    .HasForeignKey(d => d.FkDarbuotojasdId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("priziuriRezervacijas");
+                entity.Property(e => e.GId).ValueGeneratedNever();
 
-                entity.HasOne(d => d.FkKambarysidKambarysNavigation)
-                    .WithMany(p => p.Rezervacijas)
-                    .HasForeignKey(d => d.FkKambarysidKambarys)
+                entity.HasOne(d => d.FkExcursionex)
+                    .WithMany(p => p.Guides)
+                    .HasForeignKey(d => d.FkExcursionexId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("rezervuotasKambarys");
-
-                entity.HasOne(d => d.FkRezervacijosStatusasrezStatusas)
-                    .WithMany(p => p.Rezervacijas)
-                    .HasForeignKey(d => d.FkRezervacijosStatusasrezStatusasId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("nurodoStatusa");
-
-                entity.HasOne(d => d.FkSaskaitasaskaita)
-                    .WithOne(p => p.Rezervacija)
-                    .HasForeignKey<Rezervacija>(d => d.FkSaskaitasaskaitaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("priskirta");
-
-                entity.HasOne(d => d.FkSveciass)
-                    .WithMany(p => p.Rezervacijas)
-                    .HasForeignKey(d => d.FkSveciassId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("sukuriaRegistracija");
+                    .HasConstraintName("responsibleGuide");
             });
 
-            modelBuilder.Entity<RezervacijosStatusa>(entity =>
+            modelBuilder.Entity<Ingredient>(entity =>
             {
-                entity.HasKey(e => e.RezStatusasId)
-                    .HasName("PK__Rezervac__9A0C0F26A0EF8122");
+                entity.Property(e => e.IngredientId).ValueGeneratedNever();
 
-                entity.Property(e => e.RezStatusasId).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<Saskaitum>(entity =>
-            {
-                entity.HasKey(e => e.SaskaitaId)
-                    .HasName("PK__Saskaita__2EB32554BA1829AE");
-
-                entity.Property(e => e.SaskaitaId).ValueGeneratedNever();
-
-                entity.HasOne(d => d.FkSveciass)
-                    .WithMany(p => p.Saskaita)
-                    .HasForeignKey(d => d.FkSveciassId)
+                entity.HasOne(d => d.FkDishdish)
+                    .WithMany(p => p.Ingredients)
+                    .HasForeignKey(d => d.FkDishdishId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("apmoka");
+                    .HasConstraintName("containsIn");
             });
 
-            modelBuilder.Entity<Svecia>(entity =>
+            modelBuilder.Entity<Message>(entity =>
             {
-                entity.HasKey(e => e.SId)
-                    .HasName("PK__Svecias__2F3684F42D4137F9");
+                entity.HasKey(e => e.Correspondence)
+                    .HasName("PK__Message__91092B9DB1BC0E58");
 
-                entity.Property(e => e.SId).ValueGeneratedNever();
+                entity.Property(e => e.Correspondence).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkGuestg)
+                    .WithMany(p => p.Messages)
+                    .HasForeignKey(d => d.FkGuestgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("sendsMessage");
+            });
+
+            modelBuilder.Entity<Reservation>(entity =>
+            {
+                entity.Property(e => e.ReservationId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkBillbill)
+                    .WithOne(p => p.Reservation)
+                    .HasForeignKey<Reservation>(d => d.FkBillbillId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("assigns");
+
+                entity.HasOne(d => d.FkGuestg)
+                    .WithMany(p => p.Reservations)
+                    .HasForeignKey(d => d.FkGuestgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("ordersReservation");
+
+                entity.HasOne(d => d.FkReservationStatusresStatus)
+                    .WithMany(p => p.Reservations)
+                    .HasForeignKey(d => d.FkReservationStatusresStatusId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("reservationStatus1");
+
+                entity.HasOne(d => d.FkRoomidRoomNavigation)
+                    .WithMany(p => p.Reservations)
+                    .HasForeignKey(d => d.FkRoomidRoom)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("rezervedRoom");
+
+                entity.HasOne(d => d.FkWorkerw)
+                    .WithMany(p => p.Reservations)
+                    .HasForeignKey(d => d.FkWorkerwId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("managesReservation");
+            });
+
+            modelBuilder.Entity<ReservationStatus>(entity =>
+            {
+                entity.HasKey(e => e.ResStatusId)
+                    .HasName("PK__Reservat__375FEA2693B88057");
+
+                entity.Property(e => e.ResStatusId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Room>(entity =>
+            {
+                entity.HasKey(e => e.IdRoom)
+                    .HasName("PK__Room__5E5ED7FBDD1E2820");
+
+                entity.Property(e => e.IdRoom).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkRoomStatusroomStatug)
+                    .WithMany(p => p.Rooms)
+                    .HasForeignKey(d => d.FkRoomStatusroomStatugId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("displayes");
+
+                entity.HasOne(d => d.FkRoomTyperoomType)
+                    .WithMany(p => p.Rooms)
+                    .HasForeignKey(d => d.FkRoomTyperoomTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("includesType");
+            });
+
+            modelBuilder.Entity<RoomBenefit>(entity =>
+            {
+                entity.HasKey(e => e.BenefitId)
+                    .HasName("PK__RoomBene__B481E5087A25DDAA");
+
+                entity.Property(e => e.BenefitId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<RoomBenefit1>(entity =>
+            {
+                entity.HasKey(e => e.RoomBenefitsId)
+                    .HasName("PK__RoomBene__C9B044145F1772A0");
+
+                entity.Property(e => e.RoomBenefitsId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkRoomBenefitbenefit)
+                    .WithMany(p => p.RoomBenefit1s)
+                    .HasForeignKey(d => d.FkRoomBenefitbenefitId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("benefits");
+
+                entity.HasOne(d => d.FkRoomidRoomNavigation)
+                    .WithMany(p => p.RoomBenefit1s)
+                    .HasForeignKey(d => d.FkRoomidRoom)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("room1");
+            });
+
+            modelBuilder.Entity<RoomEvaluation>(entity =>
+            {
+                entity.Property(e => e.RoomEvaluationId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkGuestg)
+                    .WithMany(p => p.RoomEvaluations)
+                    .HasForeignKey(d => d.FkGuestgId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("reviewUser");
+
+                entity.HasOne(d => d.FkRoomidRoomNavigation)
+                    .WithMany(p => p.RoomEvaluations)
+                    .HasForeignKey(d => d.FkRoomidRoom)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("ratedRoom");
+            });
+
+            modelBuilder.Entity<RoomStatus>(entity =>
+            {
+                entity.HasKey(e => e.RoomStatugId)
+                    .HasName("PK__RoomStat__9929164D3F04C259");
+
+                entity.Property(e => e.RoomStatugId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<RoomType>(entity =>
+            {
+                entity.Property(e => e.RoomTypeId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<RouteCategory>(entity =>
+            {
+                entity.HasKey(e => e.CategoryId)
+                    .HasName("PK__RouteCat__D54EE9B41B85FBCD");
+
+                entity.Property(e => e.CategoryId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkRoutePointspoint)
+                    .WithMany(p => p.RouteCategories)
+                    .HasForeignKey(d => d.FkRoutePointspointId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("includesPoints");
+            });
+
+            modelBuilder.Entity<RoutePoint>(entity =>
+            {
+                entity.HasKey(e => e.PointId)
+                    .HasName("PK__RoutePoi__024136129DB112AD");
+
+                entity.Property(e => e.PointId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Worker>(entity =>
+            {
+                entity.HasKey(e => e.WId)
+                    .HasName("PK__Worker__1198F2A3A6584BD6");
+
+                entity.Property(e => e.WId).ValueGeneratedNever();
+
+                entity.HasOne(d => d.FkMessageCorrespondenceNavigation)
+                    .WithMany(p => p.Workers)
+                    .HasForeignKey(d => d.FkMessageCorrespondence)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("senderMessage");
+
+                entity.HasOne(d => d.FkWorkerTypeworkerType)
+                    .WithMany(p => p.Workers)
+                    .HasForeignKey(d => d.FkWorkerTypeworkerTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("workerType");
+            });
+
+            modelBuilder.Entity<WorkerType>(entity =>
+            {
+                entity.Property(e => e.WorkerTypeId).ValueGeneratedNever();
             });
 
             OnModelCreatingPartial(modelBuilder);
