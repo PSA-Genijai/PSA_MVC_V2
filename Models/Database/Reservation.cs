@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PSA_MVC_V2.Models.Database
 {
+    [Table("Reservation")]
     public partial class Reservation
     {
         public Reservation()
