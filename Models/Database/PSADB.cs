@@ -39,7 +39,9 @@ namespace PSA_MVC_V2.Models.Database
         public virtual DbSet<RoomType> RoomTypes { get; set; } = null!;
         public virtual DbSet<RouteCategory> RouteCategories { get; set; } = null!;
         public virtual DbSet<RoutePoint> RoutePoints { get; set; } = null!;
+        public virtual DbSet<TimeTable> TimeTables { get; set; } = null!;
         public virtual DbSet<Worker> Workers { get; set; } = null!;
+        public virtual DbSet<WorkerSchedule> WorkerSchedules { get; set; } = null!;
         public virtual DbSet<WorkerType> WorkerTypes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -58,8 +60,6 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.AddServicesId)
                     .HasName("PK__Addition__E581FBE1569B85BA");
 
-                entity.Property(e => e.AddServicesId).ValueGeneratedNever();
-
                 entity.HasOne(d => d.FkReservationreservation)
                     .WithMany(p => p.AdditionalServices)
                     .HasForeignKey(d => d.FkReservationreservationId)
@@ -69,8 +69,6 @@ namespace PSA_MVC_V2.Models.Database
 
             modelBuilder.Entity<Bill>(entity =>
             {
-                entity.Property(e => e.BillId).ValueGeneratedNever();
-
                 entity.HasOne(d => d.FkGuestg)
                     .WithMany(p => p.Bills)
                     .HasForeignKey(d => d.FkGuestgId)
@@ -83,8 +81,6 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.MessageId)
                     .HasName("PK__Correspo__0BBF6EE65F9B06F1");
 
-                entity.Property(e => e.MessageId).ValueGeneratedNever();
-
                 entity.HasOne(d => d.FkWorkerw)
                     .WithMany(p => p.Correspondences)
                     .HasForeignKey(d => d.FkWorkerwId)
@@ -96,8 +92,6 @@ namespace PSA_MVC_V2.Models.Database
             {
                 entity.HasKey(e => e.EntryId)
                     .HasName("PK__Correspo__810FDCE1EF5CB41A");
-
-                entity.Property(e => e.EntryId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.FkCorrespondencemessage)
                     .WithMany(p => p.CorrespondenceRecipients)
@@ -381,9 +375,13 @@ namespace PSA_MVC_V2.Models.Database
                     .HasConstraintName("workerType");
             });
 
-            modelBuilder.Entity<WorkerType>(entity =>
+            modelBuilder.Entity<WorkerSchedule>(entity =>
             {
-                entity.Property(e => e.WorkerTypeId).ValueGeneratedNever();
+                entity.HasOne(d => d.FkTimeTable)
+                    .WithMany(p => p.WorkerSchedules)
+                    .HasForeignKey(d => d.FkTimeTableId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Worker_schedule_Time_table");
             });
 
             OnModelCreatingPartial(modelBuilder);
