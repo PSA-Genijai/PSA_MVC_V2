@@ -6,8 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PSA_MVC_V2.Models.Database
 {
-    [Table("Reservation")]
-    [Index("FkBillbillId", Name = "UQ__Reservat__845F16401B21AF0F", IsUnique = true)]
     public partial class Reservation
     {
         public Reservation()
