@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PSA_MVC_V2.Models.Database.Message>
+
+@{
+    ViewData["Title"] = "Visos žinutės";
+}
+
+<h1>Visos žinutės</h1>
+
+@if (this.Model == null)
+{
+    <p>Žinučių nebuvo rasta.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Checked)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkGuestg)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Checked)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FkGuestg.GId)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Correspondence">Details</a>
+                    </td>
+                </tr>
+        }
+        </tbody>
+    </table>
+}
