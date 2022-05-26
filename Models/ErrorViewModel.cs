@@ -5,5 +5,6 @@ namespace PSA_MVC_V2.Models
         public string? RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+
     }
 }

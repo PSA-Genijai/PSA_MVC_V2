@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using PSA_MVC_V2.Models;
-
+using PSA_MVC_V2.Models.Database;
 using System.Diagnostics;
 
 namespace PSA_MVC_V2.Controllers
