@@ -19,6 +19,7 @@ namespace PSA_MVC_V2.Models.Database
         public int DishId { get; set; }
         [Column("dish_title")]
         [StringLength(255)]
+        [Required]
         [Unicode(false)]
         public string? DishTitle { get; set; }
         [Column("dish_price")]
