@@ -11,6 +11,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("bill_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BillId { get; set; }
         [Column("bill_sum")]
         public double? BillSum { get; set; }
@@ -21,6 +22,6 @@ namespace PSA_MVC_V2.Models.Database
         [InverseProperty("Bills")]
         public virtual Guest FkGuestg { get; set; } = null!;
         [InverseProperty("FkBillbill")]
-        public virtual Reservation Reservation { get; set; } = null!;
+        public virtual Reservation? Reservation { get; set; }
     }
 }

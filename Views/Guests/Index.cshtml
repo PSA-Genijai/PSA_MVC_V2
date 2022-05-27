@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PSA_MVC_V2.Models.Database.Guest>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GNickname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GLastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GBirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GAdress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GGender)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GNickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GLastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GBirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GAdress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GGender)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GNickname">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

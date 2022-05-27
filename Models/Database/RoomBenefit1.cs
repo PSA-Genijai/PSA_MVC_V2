@@ -11,6 +11,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("room_benefits_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoomBenefitsId { get; set; }
         [Column("benefit_assignment_date", TypeName = "date")]
         public DateTime? BenefitAssignmentDate { get; set; }

@@ -16,6 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("dish_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DishId { get; set; }
         [Column("dish_title")]
         [StringLength(255)]

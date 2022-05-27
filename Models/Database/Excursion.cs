@@ -17,6 +17,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("ex_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ExId { get; set; }
         [Column("ex_title")]
         [StringLength(255)]

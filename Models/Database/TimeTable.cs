@@ -16,6 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("time_table_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TimeTableId { get; set; }
         [Column("from", TypeName = "date")]
         public DateTime From { get; set; }

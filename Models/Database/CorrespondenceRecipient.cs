@@ -12,6 +12,7 @@ namespace PSA_MVC_V2.Models.Database
         public bool? Checked { get; set; }
         [Key]
         [Column("entry_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EntryId { get; set; }
         [Column("fk_Workerw_id")]
         public int FkWorkerwId { get; set; }

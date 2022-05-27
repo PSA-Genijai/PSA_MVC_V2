@@ -1,0 +1,74 @@
+﻿@model PSA_MVC_V2.Models.Database.Guest
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Guest</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="GId" />
+            <div class="form-group">
+                <label asp-for="GNickname" class="control-label"></label>
+                <input asp-for="GNickname" class="form-control" />
+                <span asp-validation-for="GNickname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GPassword" class="control-label"></label>
+                <input asp-for="GPassword" class="form-control" />
+                <span asp-validation-for="GPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GName" class="control-label"></label>
+                <input asp-for="GName" class="form-control" />
+                <span asp-validation-for="GName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GLastname" class="control-label"></label>
+                <input asp-for="GLastname" class="form-control" />
+                <span asp-validation-for="GLastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GEmail" class="control-label"></label>
+                <input asp-for="GEmail" class="form-control" />
+                <span asp-validation-for="GEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GBirthDate" class="control-label"></label>
+                <input asp-for="GBirthDate" class="form-control" />
+                <span asp-validation-for="GBirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GAdress" class="control-label"></label>
+                <input asp-for="GAdress" class="form-control" />
+                <span asp-validation-for="GAdress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GPhoneNumber" class="control-label"></label>
+                <input asp-for="GPhoneNumber" class="form-control" />
+                <span asp-validation-for="GPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GGender" class="control-label"></label>
+                <input asp-for="GGender" class="form-control" />
+                <span asp-validation-for="GGender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

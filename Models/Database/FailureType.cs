@@ -22,6 +22,7 @@ namespace PSA_MVC_V2.Models.Database
         public string? FailureType1 { get; set; }
         [Key]
         [Column("id_FailureType")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdFailureType { get; set; }
 
         [InverseProperty("FkFailureTypeidFailureTypeNavigation")]

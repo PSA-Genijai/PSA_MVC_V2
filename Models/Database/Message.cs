@@ -15,6 +15,7 @@ namespace PSA_MVC_V2.Models.Database
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Correspondence { get; set; }
         [Column("message")]
         [StringLength(255)]

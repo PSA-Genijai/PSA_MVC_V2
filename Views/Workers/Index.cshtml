@@ -1,0 +1,101 @@
+﻿@model IEnumerable<PSA_MVC_V2.Models.Database.Worker>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (Context.Session.GetString(SessionValues.UserType) != "Client")
+{
+    <a asp-action="Login">Please login</a>
+}
+else
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.WNickname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WPassword)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WLastname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WEmail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WBirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WAdress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WPhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WGender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkMessageCorrespondenceNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkWorkerTypeworkerType)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WNickname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WPassword)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WLastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WBirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WAdress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WPhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WGender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FkMessageCorrespondenceNavigation.Correspondence)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FkWorkerTypeworkerType.WorkerTypeId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.WId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.WNickname">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.WId">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}

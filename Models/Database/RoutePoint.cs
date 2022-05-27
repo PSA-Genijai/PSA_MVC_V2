@@ -15,6 +15,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("point_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PointId { get; set; }
         [Column("point_title")]
         [StringLength(255)]
