@@ -6,7 +6,7 @@
 
 <h1>Visos žinutės</h1>
 
-@if (this.Model == null)
+@if (this.Model.Count() == 0)
 {
     <p>Žinučių nebuvo rasta.</p>
 }

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PSA_MVC_V2.Models.Database.Excursion>
+
+@{
+    ViewData["Title"] = "Visos kelionės";
+}
+
+<h1>Visos kelionės</h1>
+
+@if (TempData["ProblemResult"] != null)
+{
+    <p>@TempData["ProblemResult"]</p>
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@if (this.Model.Count() == 0)
+{
+    <p>Žinučių nebuvo rasta.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FkAdditionalServicesaddServices)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FkAdditionalServicesaddServices.AddServicesId)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ExId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.ExId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ExId">Delete</a> |
+                            <a asp-action="CheckProblems" asp-route-id="@item.ExId">Check for problems</a>
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+}
