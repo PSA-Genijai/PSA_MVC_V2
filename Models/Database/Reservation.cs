@@ -16,7 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("reservation_id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int ReservationId { get; set; }
         [Column("creation_date", TypeName = "date")]
         public DateTime? CreationDate { get; set; }
