@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Visos rezervacijos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Kurti naują rezervaciją</a>
 </p>
 
 @if (this.Model == null)
@@ -38,19 +38,7 @@ else
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FkBillbill)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkGuestg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkReservationStatusresStatus)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FkRoomidRoomNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkWorkerw)
             </th>
             <th></th>
         </tr>
@@ -77,19 +65,7 @@ else
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FkBillbill.BillId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkGuestg.GId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkReservationStatusresStatus.ResStatusId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FkRoomidRoomNavigation.IdRoom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FkWorkerw.WId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReservationId">Edit</a> |

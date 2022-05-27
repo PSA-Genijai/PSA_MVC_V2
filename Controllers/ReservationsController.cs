@@ -64,30 +64,42 @@ namespace PSA_MVC_V2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CreationDate,CheckinDate,CheckoutDate,Adults,Children,Price,FkBillbillId,FkGuestgId,FkRoomidRoom,FkWorkerwId,FkReservationStatusresStatusId")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("CreationDate,CheckinDate,CheckoutDate,Adults,Children,Price,FkRoomidRoom")] Reservation reservation)
         {
-            reservation.FkRoomidRoomNavigation = this.GetRoomById(reservation.FkRoomidRoom);
-            reservation.FkGuestg = this.GetGuestById(reservation.FkGuestgId);
-            reservation.FkWorkerw = this.GetWorkerById(reservation.FkWorkerwId);
-            reservation.FkReservationStatusresStatus = this.GetReservationStatusById(reservation.FkReservationStatusresStatusId);
+            //reservation.FkRoomidRoomNavigation = this.GetRoomById(reservation.FkRoomidRoom);
+            //reservation.FkGuestg = this.GetGuestById(reservation.FkGuestgId);
+            //reservation.FkWorkerw = this.GetWorkerById(reservation.FkWorkerwId);
+            //reservation.FkReservationStatusresStatus = this.GetReservationStatusById(reservation.FkReservationStatusresStatusId);
 
-            var errors = ModelState
-            .Where(x => x.Value.Errors.Count > 0)
-            .Select(x => new { x.Key, x.Value.Errors })
-            .ToArray();
+            Reservation res = new Reservation();
+            res.CreationDate = reservation.CreationDate;
+            res.CheckinDate = reservation.CheckinDate;
+            res.CheckoutDate = reservation.CheckoutDate;
+            res.Adults = reservation.Adults;
+            res.Children = reservation.Children;
+            res.Price = reservation.Price;
+            res.FkBillbillId = 1;
+            res.FkGuestgId = 1;
+            res.FkRoomidRoom = reservation.FkRoomidRoom;
+            res.FkWorkerwId = 1;
+            res.FkReservationStatusresStatusId = 1;
 
-            if (ModelState.IsValid)
-            {
-                _context.Add(reservation);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["FkBillbillId"] = new SelectList(_context.Bills, "BillId", "BillId", reservation.FkBillbillId);
-            ViewData["FkGuestgId"] = new SelectList(_context.Guests, "GId", "GId", reservation.FkGuestgId);
-            ViewData["FkReservationStatusresStatusId"] = new SelectList(_context.ReservationStatuses, "ResStatusId", "ResStatusId", reservation.FkReservationStatusresStatusId);
-            ViewData["FkRoomidRoom"] = new SelectList(_context.Rooms, "IdRoom", "IdRoom", reservation.FkRoomidRoom);
-            ViewData["FkWorkerwId"] = new SelectList(_context.Workers, "WId", "WId", reservation.FkWorkerwId);
-            return View(reservation);
+            _context.Reservations.Add(res);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Reservations.Add(reservation);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //ViewData["FkBillbillId"] = new SelectList(_context.Bills, "BillId", "BillId", reservation.FkBillbillId);
+            //ViewData["FkGuestgId"] = new SelectList(_context.Guests, "GId", "GId", reservation.FkGuestgId);
+            //ViewData["FkReservationStatusresStatusId"] = new SelectList(_context.ReservationStatuses, "ResStatusId", "ResStatusId", reservation.FkReservationStatusresStatusId);
+            //ViewData["FkRoomidRoom"] = new SelectList(_context.Rooms, "IdRoom", "IdRoom", reservation.FkRoomidRoom);
+            //ViewData["FkWorkerwId"] = new SelectList(_context.Workers, "WId", "WId", reservation.FkWorkerwId);
+            //return View(reservation);
         }
 
         // GET: Reservations/Edit/5
