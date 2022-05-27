@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PSA_MVC_V2.Models.Database;
+using PSA_MVC_V2.Controllers;
 
 namespace PSA_MVC_V2.Controllers
 {
@@ -42,6 +43,24 @@ namespace PSA_MVC_V2.Controllers
             }
 
             return View(dish);
+        }
+
+        [HttpPost]
+        public ActionResult FilterIngredients(IEnumerable<Ingredient> items)
+        {
+            var pSADB = _context.Dishes.Include(d => d.FkAdditionalServicesaddServices);
+            var pSADBi = _context.Ingredients.Include(d => d.FkDishdish);
+
+            IEnumerable<Ingredient> dishesID = _context.Ingredients.Where(x => x.Checked == true);
+
+            //var filteredDishes = _context.Dishes.Where(x => dishesID.Contains(x.DishId));
+
+            ViewData["Dishes"] = pSADB;
+            ViewData["Ingredients"] = items;
+
+
+
+            return RedirectToAction("RestaurantMenuView", "Restaurant");
         }
 
         // GET: Dish/Create

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PSA_MVC_V2.Models.Database;
+using System.Dynamic;
 
 namespace PSA_MVC_V2.Controllers
 {
@@ -29,12 +30,19 @@ namespace PSA_MVC_V2.Controllers
         public async Task<IActionResult> RestaurantDishOrderView()
         {
             var pSADB = _context.Dishes.Include(d => d.FkAdditionalServicesaddServices);
-            return View(await pSADB.ToListAsync());
+            ViewData["Dishes"] = pSADB;
+
+            return View();
         }
 
-        public async Task<IActionResult> RestaurantMenuView()
+        public async Task<IActionResult> RestaurantMenuView(string v)
         {
             var pSADB = _context.Dishes.Include(d => d.FkAdditionalServicesaddServices);
+            var pSADBi = _context.Ingredients.Include(d => d.FkDishdish);
+            ViewData["Dishes"] = pSADB;
+            ViewData["Ingredients"] = pSADBi;
+
+
             return View(await pSADB.ToListAsync());
         }
 

@@ -1,7 +1,15 @@
-﻿@model IEnumerable<PSA_MVC_V2.Models.Database.Dish>
+﻿@using PSA_MVC_V2.Models.Database
+
 
 @{
-    ViewData["Title"] = "RestaurantDishOrderView";
+    ViewData["Title"] = "Index";
+}
+
+@{
+
+   IEnumerable<Dish> dishes = ViewData["Dishes"] as IEnumerable<Dish>;
+   IEnumerable<Ingredient> ingredients = ViewData["Ingredients"] as IEnumerable<Ingredient>;
+
 }
 
 <h1>Index</h1>
@@ -13,19 +21,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DishTitle)
+                @Html.DisplayNameFor(model => dishes.First().DishTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DishPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FkAdditionalServicesaddServices)
+                @Html.DisplayNameFor(model =>  dishes.First().DishPrice)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in dishes) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.DishTitle)
@@ -34,14 +39,17 @@
                 @Html.DisplayFor(modelItem => item.DishPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FkAdditionalServicesaddServices.AddServicesId)
-            </td>
-            <td>
                 <a asp-action="Edit" asp-route-id="@item.DishId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.DishId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.DishId">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+
+<button>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Restaurant" asp-action="RestaurantMenuView">Filter</a>
+
+</button>
+
