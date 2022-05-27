@@ -64,7 +64,7 @@ namespace PSA_MVC_V2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservationId,CreationDate,CheckinDate,CheckoutDate,Adults,Children,Price,FkBillbillId,FkGuestgId,FkRoomidRoom,FkWorkerwId,FkReservationStatusresStatusId")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("CreationDate,CheckinDate,CheckoutDate,Adults,Children,Price,FkBillbillId,FkGuestgId,FkRoomidRoom,FkWorkerwId,FkReservationStatusresStatusId")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
