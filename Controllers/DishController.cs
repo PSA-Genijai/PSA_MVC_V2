@@ -48,19 +48,13 @@ namespace PSA_MVC_V2.Controllers
         [HttpPost]
         public ActionResult FilterIngredients(IEnumerable<Ingredient> items)
         {
-            var pSADB = _context.Dishes.Include(d => d.FkAdditionalServicesaddServices);
-            var pSADBi = _context.Ingredients.Include(d => d.FkDishdish);
+            var allowedIngredients = items.Where(x => x.Checked == true).ToString();
+            var filteredDishes = _context.Dishes.Where(x => allowedIngredients.Contains(x.DishId.ToString()));
 
-            IEnumerable<Ingredient> dishesID = _context.Ingredients.Where(x => x.Checked == true);
+            ViewData["Dishes"] = filteredDishes;
+            ViewData["Ingredients"] = allowedIngredients;
 
-            //var filteredDishes = _context.Dishes.Where(x => dishesID.Contains(x.DishId));
-
-            ViewData["Dishes"] = pSADB;
-            ViewData["Ingredients"] = items;
-
-
-
-            return RedirectToAction("RestaurantMenuView", "Restaurant");
+            return RedirectToAction("RestaurantDishOrderView", "Restaurant");
         }
 
         // GET: Dish/Create

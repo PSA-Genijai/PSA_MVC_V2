@@ -27,7 +27,7 @@ namespace PSA_MVC_V2.Controllers
         }
 
         // GET: Restaurant
-        public async Task<IActionResult> RestaurantDishOrderView()
+        public async Task<IActionResult> RestaurantDishOrderView(IEnumerable<Dish> dishes)
         {
             var pSADB = _context.Dishes.Include(d => d.FkAdditionalServicesaddServices);
             ViewData["Dishes"] = pSADB;
@@ -45,6 +45,17 @@ namespace PSA_MVC_V2.Controllers
 
             return View(await pSADB.ToListAsync());
         }
+        [HttpPost]
+        public async Task<IActionResult> createOrder(IEnumerable<Dish> items)
+        {
+            var pSADB = _context.Dishes.Include(d => d.FkAdditionalServicesaddServices);
+            var pSADBi = _context.Ingredients.Include(d => d.FkDishdish);
+            ViewData["Dishes"] = pSADB;
+            ViewData["Ingredients"] = pSADBi;
+
+            return View(await pSADB.ToListAsync());
+        }
+        
 
         // GET: Restaurant/Details/5
         public async Task<IActionResult> Details(int? id)

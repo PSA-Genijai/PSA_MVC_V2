@@ -17,9 +17,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+@using (Html.BeginForm("RestaurantDishOrderView","Restaurant",FormMethod.Post))
+{
+    <table class="table">
     <thead>
         <tr>
+            <th>
+
+            </th>
             <th>
                 @Html.DisplayNameFor(model => dishes.First().DishTitle)
             </th>
@@ -30,8 +35,13 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in dishes) {
+        @if(dishes != null)
+        {
+            @foreach (var item in dishes) {
         <tr>
+            <td>
+                @Html.EditorFor(modelItem => item.Checked)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DishTitle)
             </td>
@@ -45,11 +55,25 @@
             </td>
         </tr>
         }
+        
+        }
     </tbody>
 </table>
+  @if (ingredients == null)
+    {
+    <button>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Restaurant" asp-action="RestaurantMenuView">Filter</a>
+    </button>
+    }
+    <br />
+    <button>
+        <a onclick="alert('Kuriamas uzsakymas')">
+<input type="submit" value="Order" />
+        </a>
+        
+        </button>
 
-<button>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Restaurant" asp-action="RestaurantMenuView">Filter</a>
+}
 
-</button>
+
 
