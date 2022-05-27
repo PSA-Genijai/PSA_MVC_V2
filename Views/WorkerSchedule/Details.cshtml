@@ -1,0 +1,36 @@
+﻿@model PSA_MVC_V2.Models.Database.WorkerSchedule
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>WorkerSchedule</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FkTimeTable)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FkTimeTable.TimeTableId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.WorkerScheduleId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
