@@ -68,8 +68,8 @@ namespace PSA_MVC_V2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newtoSave = new Excursion() { ExcursionPoints = excursion.ExcursionPoints, ExDate = excursion.ExDate, ExPrice = excursion.ExPrice, ExTitle = excursion.ExTitle, FkAdditionalServicesaddServices = excursion.FkAdditionalServicesaddServices, FkAdditionalServicesaddServicesId = excursion.FkAdditionalServicesaddServicesId, Guides = excursion.Guides };
-                _context.Add(newtoSave);
+                //var newtoSave = new Excursion() { ExcursionPoints = excursion.ExcursionPoints, ExDate = excursion.ExDate, ExPrice = excursion.ExPrice, ExTitle = excursion.ExTitle, FkAdditionalServicesaddServices = excursion.FkAdditionalServicesaddServices, FkAdditionalServicesaddServicesId = excursion.FkAdditionalServicesaddServicesId, Guides = excursion.Guides };
+                _context.Add(excursion);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

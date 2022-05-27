@@ -66,6 +66,16 @@ namespace PSA_MVC_V2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CreationDate,CheckinDate,CheckoutDate,Adults,Children,Price,FkBillbillId,FkGuestgId,FkRoomidRoom,FkWorkerwId,FkReservationStatusresStatusId")] Reservation reservation)
         {
+            reservation.FkRoomidRoomNavigation = this.GetRoomById(reservation.FkRoomidRoom);
+            reservation.FkGuestg = this.GetGuestById(reservation.FkGuestgId);
+            reservation.FkWorkerw = this.GetWorkerById(reservation.FkWorkerwId);
+            reservation.FkReservationStatusresStatus = this.GetReservationStatusById(reservation.FkReservationStatusresStatusId);
+
+            var errors = ModelState
+            .Where(x => x.Value.Errors.Count > 0)
+            .Select(x => new { x.Key, x.Value.Errors })
+            .ToArray();
+
             if (ModelState.IsValid)
             {
                 _context.Add(reservation);
@@ -186,6 +196,26 @@ namespace PSA_MVC_V2.Controllers
         private bool ReservationExists(int id)
         {
           return (_context.Reservations?.Any(e => e.ReservationId == id)).GetValueOrDefault();
+        }
+
+        private Worker GetWorkerById(int id)
+        {
+            return _context.Workers.Find(id) ?? new Worker();
+        }
+
+        private Room GetRoomById(int id)
+        {
+            return _context.Rooms.Find(id) ?? new Room();
+        }
+
+        private Guest GetGuestById(int id)
+        {
+            return _context.Guests.Find(id) ?? new Guest();
+        }
+
+        private ReservationStatus GetReservationStatusById(int id)
+        {
+            return _context.ReservationStatuses.Find(id) ?? new ReservationStatus();
         }
     }
 }
