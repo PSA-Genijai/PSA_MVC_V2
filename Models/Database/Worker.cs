@@ -56,11 +56,11 @@ namespace PSA_MVC_V2.Models.Database
         [Column("fk_Worker_typeworker_type_id")]
         public int FkWorkerTypeworkerTypeId { get; set; }
         [Column("fk_MessageCorrespondence")]
-        public int FkMessageCorrespondence { get; set; }
+        public int? FkMessageCorrespondence { get; set; }
 
         [ForeignKey("FkMessageCorrespondence")]
         [InverseProperty("Workers")]
-        public virtual Message FkMessageCorrespondenceNavigation { get; set; } = null!;
+        public virtual Message? FkMessageCorrespondenceNavigation { get; set; }
         [ForeignKey("FkWorkerTypeworkerTypeId")]
         [InverseProperty("Workers")]
         public virtual WorkerType FkWorkerTypeworkerType { get; set; } = null!;

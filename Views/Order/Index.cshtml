@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PSA_MVC_V2.Models.Database.AdditionalService>
+
+@{
+    ViewData["Title"] = "Visi pranešimai";
+}
+
+<h1>Visi pranešimai</h1>
+
+@if (this.Model.Count() == 0)
+{
+    <p>Pranešimų nebuvo rasta.</p>
+}
+else
+{
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AddServicesPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkReservationreservation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddServicesPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkReservationreservation.ReservationId)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.AddServicesId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}

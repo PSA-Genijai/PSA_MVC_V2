@@ -31,7 +31,7 @@ namespace PSA_MVC_V2.Models.Database
         [Column("price")]
         public double? Price { get; set; }
         [Column("fk_Billbill_id")]
-        public int FkBillbillId { get; set; }
+        public int? FkBillbillId { get; set; }
         [Column("fk_Guestg_id")]
         public int FkGuestgId { get; set; }
         [Column("fk_Roomid_Room")]
@@ -43,7 +43,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [ForeignKey("FkBillbillId")]
         [InverseProperty("Reservation")]
-        public virtual Bill FkBillbill { get; set; } = null!;
+        public virtual Bill? FkBillbill { get; set; }
         [ForeignKey("FkGuestgId")]
         [InverseProperty("Reservations")]
         public virtual Guest FkGuestg { get; set; } = null!;
