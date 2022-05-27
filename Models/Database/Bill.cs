@@ -21,6 +21,6 @@ namespace PSA_MVC_V2.Models.Database
         [InverseProperty("Bills")]
         public virtual Guest FkGuestg { get; set; } = null!;
         [InverseProperty("FkBillbill")]
-        public virtual Reservation Reservation { get; set; } = null!;
+        public virtual Reservation? Reservation { get; set; }
     }
 }

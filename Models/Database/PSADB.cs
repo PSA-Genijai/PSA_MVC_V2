@@ -201,7 +201,6 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasOne(d => d.FkBillbill)
                     .WithOne(p => p.Reservation)
                     .HasForeignKey<Reservation>(d => d.FkBillbillId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("assigns");
 
                 entity.HasOne(d => d.FkGuestg)
@@ -324,7 +323,6 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasOne(d => d.FkMessageCorrespondenceNavigation)
                     .WithMany(p => p.Workers)
                     .HasForeignKey(d => d.FkMessageCorrespondence)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("senderMessage");
 
                 entity.HasOne(d => d.FkWorkerTypeworkerType)
