@@ -1,0 +1,35 @@
+﻿@model PSA_MVC_V2.Models.Database.Message
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Message1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Message1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Checked)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Checked)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FkGuestg)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FkGuestg.GId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

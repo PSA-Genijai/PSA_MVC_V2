@@ -1,15 +1,10 @@
-
 using Microsoft.EntityFrameworkCore;
 using PSA_MVC_V2.Models.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PSADB>(i => i.UseSqlServer("Server=78.60.99.137;Database=master;user id=superDuper;password=labaislaptaskodas;Trusted_Connection=False;"));
-
-// Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddDistributedMemoryCache();
-
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromSeconds(10);
@@ -17,6 +12,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+
+// Add services to the container.
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

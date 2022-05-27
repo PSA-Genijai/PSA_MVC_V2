@@ -1,0 +1,36 @@
+﻿@model PSA_MVC_V2.Models.Database.Dish
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Dish</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DishTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DishTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DishPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DishPrice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FkAdditionalServicesaddServices)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FkAdditionalServicesaddServices.AddServicesId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.DishId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

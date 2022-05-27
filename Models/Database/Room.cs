@@ -17,7 +17,7 @@ namespace PSA_MVC_V2.Models.Database
         }
 
         [Column("room_floor")]
-        public int RoomFloor { get; set; }
+        public int? RoomFloor { get; set; }
         [Column("room_number")]
         public int? RoomNumber { get; set; }
         [Column("room_price")]
