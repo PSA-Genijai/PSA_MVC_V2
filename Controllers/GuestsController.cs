@@ -46,7 +46,7 @@ namespace PSA_MVC_V2.Controllers
 
         public IActionResult Login()
         {
-            if (WorkersController.isLoggedIn(HttpContext))
+            if (AdminController.isLoggedIn(HttpContext))
             {
                 return RedirectToAction(nameof(Index));
             }

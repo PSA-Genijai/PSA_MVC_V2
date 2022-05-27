@@ -9,11 +9,11 @@ using PSA_MVC_V2.Models.Database;
 
 namespace PSA_MVC_V2.Controllers
 {
-    public class WorkersController : Controller
+    public class AdminController : Controller
     {
         private readonly PSADB _context;
 
-        public WorkersController(PSADB context)
+        public AdminController(PSADB context)
         {
             _context = context;
         }

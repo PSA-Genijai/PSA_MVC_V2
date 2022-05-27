@@ -17,7 +17,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("reservation_id")]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReservationId { get; set; }
         [Column("creation_date", TypeName = "date")]
         [DisplayName("Sukūrimo data")]
@@ -52,22 +52,27 @@ namespace PSA_MVC_V2.Models.Database
         [ForeignKey("FkBillbillId")]
         [DisplayName("Užsakymo ID")]
         [InverseProperty("Reservation")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public virtual Bill? FkBillbill { get; set; }
         [ForeignKey("FkGuestgId")]
         [DisplayName("Svečio ID")]
         [InverseProperty("Reservations")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public virtual Guest FkGuestg { get; set; } = null!;
         [ForeignKey("FkReservationStatusresStatusId")]
         [DisplayName("Statuso ID")]
         [InverseProperty("Reservations")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public virtual ReservationStatus FkReservationStatusresStatus { get; set; } = null!;
         [ForeignKey("FkRoomidRoom")]
         [DisplayName("Kambario ID")]
         [InverseProperty("Reservations")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public virtual Room FkRoomidRoomNavigation { get; set; } = null!;
         [ForeignKey("FkWorkerwId")]
         [DisplayName("Administratorio ID")]
         [InverseProperty("Reservations")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public virtual Worker FkWorkerw { get; set; } = null!;
         [InverseProperty("FkReservationreservation")]
         public virtual ICollection<AdditionalService> AdditionalServices { get; set; }
