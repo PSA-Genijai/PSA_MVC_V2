@@ -11,6 +11,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("worker_schedule_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WorkerScheduleId { get; set; }
         [Column("s_name")]
         [StringLength(255)]

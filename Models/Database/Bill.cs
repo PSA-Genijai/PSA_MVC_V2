@@ -11,6 +11,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("bill_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BillId { get; set; }
         [Column("bill_sum")]
         public double? BillSum { get; set; }

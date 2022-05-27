@@ -10,6 +10,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("category_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryId { get; set; }
         [Column("category_title")]
         [StringLength(255)]

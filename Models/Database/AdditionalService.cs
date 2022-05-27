@@ -16,6 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("add_services_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AddServicesId { get; set; }
         [Column("add_services_price")]
         public double? AddServicesPrice { get; set; }

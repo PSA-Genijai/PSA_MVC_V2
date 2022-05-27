@@ -108,7 +108,8 @@ namespace PSA_MVC_V2.Models.Database
 
             modelBuilder.Entity<Dish>(entity =>
             {
-                entity.Property(e => e.DishId).ValueGeneratedNever();
+                //entity.Property(e => e.DishId).ValueGeneratedNever();
+                entity.Property(e => e.DishId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkAdditionalServicesaddServices)
                     .WithMany(p => p.Dishes)
@@ -121,7 +122,8 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.ExId)
                     .HasName("PK__Excursio__F6D3E489E90EC2BA");
 
-                entity.Property(e => e.ExId).ValueGeneratedNever();
+                //entity.Property(e => e.ExId).ValueGeneratedNever();
+                entity.Property(e => e.ExId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkAdditionalServicesaddServices)
                     .WithMany(p => p.Excursions)
@@ -143,7 +145,8 @@ namespace PSA_MVC_V2.Models.Database
 
             modelBuilder.Entity<Failure>(entity =>
             {
-                entity.Property(e => e.FailureId).ValueGeneratedNever();
+                //entity.Property(e => e.FailureId).ValueGeneratedNever();
+                entity.Property(e => e.FailureId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkFailureTypeidFailureTypeNavigation)
                     .WithMany(p => p.Failures)
@@ -178,7 +181,8 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.GId)
                     .HasName("PK__Guide__49FB61C43528AFAA");
 
-                entity.Property(e => e.GId).ValueGeneratedNever();
+                //entity.Property(e => e.GId).ValueGeneratedNever();
+                entity.Property(e => e.GId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkExcursionex)
                     .WithMany(p => p.Guides)
@@ -189,7 +193,8 @@ namespace PSA_MVC_V2.Models.Database
 
             modelBuilder.Entity<Ingredient>(entity =>
             {
-                entity.Property(e => e.IngredientId).ValueGeneratedNever();
+                //entity.Property(e => e.IngredientId).ValueGeneratedNever();
+                entity.Property(e => e.IngredientId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkDishdish)
                     .WithMany(p => p.Ingredients)
@@ -203,7 +208,8 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.Correspondence)
                     .HasName("PK__Message__91092B9DB1BC0E58");
 
-                entity.Property(e => e.Correspondence).ValueGeneratedNever();
+                //entity.Property(e => e.Correspondence).ValueGeneratedNever();
+                entity.Property(e => e.Correspondence).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkGuestg)
                     .WithMany(p => p.Messages)
@@ -214,7 +220,8 @@ namespace PSA_MVC_V2.Models.Database
 
             modelBuilder.Entity<Reservation>(entity =>
             {
-                entity.Property(e => e.ReservationId).ValueGeneratedNever();
+                //entity.Property(e => e.ReservationId).ValueGeneratedNever();
+                entity.Property(e => e.ReservationId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkBillbill)
                     .WithOne(p => p.Reservation)
@@ -252,7 +259,8 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.ResStatusId)
                     .HasName("PK__Reservat__375FEA2693B88057");
 
-                entity.Property(e => e.ResStatusId).ValueGeneratedNever();
+                //entity.Property(e => e.ResStatusId).ValueGeneratedNever();
+                entity.Property(e => e.ResStatusId).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<Room>(entity =>
@@ -260,7 +268,8 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.IdRoom)
                     .HasName("PK__Room__5E5ED7FBDD1E2820");
 
-                entity.Property(e => e.IdRoom).ValueGeneratedNever();
+                //entity.Property(e => e.IdRoom).ValueGeneratedNever();
+                entity.Property(e => e.IdRoom).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkRoomStatusroomStatug)
                     .WithMany(p => p.Rooms)
@@ -280,7 +289,8 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.BenefitId)
                     .HasName("PK__RoomBene__B481E5087A25DDAA");
 
-                entity.Property(e => e.BenefitId).ValueGeneratedNever();
+                entity.Property(e => e.BenefitId).ValueGeneratedOnAdd();
+                //entity.Property(e => e.BenefitId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<RoomBenefit1>(entity =>
@@ -288,7 +298,8 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.RoomBenefitsId)
                     .HasName("PK__RoomBene__C9B044145F1772A0");
 
-                entity.Property(e => e.RoomBenefitsId).ValueGeneratedNever();
+                //entity.Property(e => e.RoomBenefitsId).ValueGeneratedNever();
+                entity.Property(e => e.RoomBenefitsId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkRoomBenefitbenefit)
                     .WithMany(p => p.RoomBenefit1s)
@@ -305,7 +316,8 @@ namespace PSA_MVC_V2.Models.Database
 
             modelBuilder.Entity<RoomEvaluation>(entity =>
             {
-                entity.Property(e => e.RoomEvaluationId).ValueGeneratedNever();
+                //entity.Property(e => e.RoomEvaluationId).ValueGeneratedNever();
+                entity.Property(e => e.RoomEvaluationId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkGuestg)
                     .WithMany(p => p.RoomEvaluations)
@@ -325,7 +337,8 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.RoomStatugId)
                     .HasName("PK__RoomStat__9929164D3F04C259");
 
-                entity.Property(e => e.RoomStatugId).ValueGeneratedNever();
+                //entity.Property(e => e.RoomStatugId).ValueGeneratedNever();
+                entity.Property(e => e.RoomStatugId).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<RoomType>(entity =>
@@ -338,7 +351,7 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.CategoryId)
                     .HasName("PK__RouteCat__D54EE9B41B85FBCD");
 
-                entity.Property(e => e.CategoryId).ValueGeneratedNever();
+                entity.Property(e => e.CategoryId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkRoutePointspoint)
                     .WithMany(p => p.RouteCategories)
@@ -352,7 +365,7 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.PointId)
                     .HasName("PK__RoutePoi__024136129DB112AD");
 
-                entity.Property(e => e.PointId).ValueGeneratedNever();
+                entity.Property(e => e.PointId).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<Worker>(entity =>
@@ -360,7 +373,7 @@ namespace PSA_MVC_V2.Models.Database
                 entity.HasKey(e => e.WId)
                     .HasName("PK__Worker__1198F2A3A6584BD6");
 
-                entity.Property(e => e.WId).ValueGeneratedNever();
+                entity.Property(e => e.WId).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.FkMessageCorrespondenceNavigation)
                     .WithMany(p => p.Workers)

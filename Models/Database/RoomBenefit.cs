@@ -16,6 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("benefit_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BenefitId { get; set; }
         [Column("benefit_title")]
         [StringLength(255)]

@@ -11,6 +11,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("g_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GId { get; set; }
         [Column("g_name")]
         [StringLength(255)]

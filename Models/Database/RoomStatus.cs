@@ -16,6 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("room_statug_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoomStatugId { get; set; }
         [Column("room_status")]
         [StringLength(255)]
