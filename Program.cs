@@ -2,9 +2,17 @@ using Microsoft.EntityFrameworkCore;
 using PSA_MVC_V2.Models.Database;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<PSADB>(i => i.UseSqlServer("Server=78.60.99.137;Database=master;user id=superDuper;password=labaislaptaskodas;Trusted_Connection=False;"));
+builder.Services.AddControllersWithViews();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+
 // Add services to the container.
 var app = builder.Build();
 
@@ -20,6 +28,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

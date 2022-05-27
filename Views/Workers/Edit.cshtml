@@ -1,0 +1,85 @@
+﻿@using PSA_MVC_V2.Controllers
+@model PSA_MVC_V2.Models.Database.Worker
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Worker</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="WId" />
+            <div class="form-group">
+                <label asp-for="WNickname" class="control-label"></label>
+                <input asp-for="WNickname" class="form-control" />
+                <span asp-validation-for="WNickname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WPassword" class="control-label"></label>
+                <input asp-for="WPassword" class="form-control" />
+                <span asp-validation-for="WPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WName" class="control-label"></label>
+                <input asp-for="WName" class="form-control" />
+                <span asp-validation-for="WName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WLastname" class="control-label"></label>
+                <input asp-for="WLastname" class="form-control" />
+                <span asp-validation-for="WLastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WEmail" class="control-label"></label>
+                <input asp-for="WEmail" class="form-control" />
+                <span asp-validation-for="WEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WBirthDate" class="control-label"></label>
+                <input asp-for="WBirthDate" class="form-control" />
+                <span asp-validation-for="WBirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WAdress" class="control-label"></label>
+                <input asp-for="WAdress" class="form-control" />
+                <span asp-validation-for="WAdress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WPhoneNumber" class="control-label"></label>
+                <input asp-for="WPhoneNumber" class="form-control" />
+                <span asp-validation-for="WPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WGender" class="control-label"></label>
+                <input asp-for="WGender" class="form-control" />
+                <span asp-validation-for="WGender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FkWorkerTypeworkerTypeId" class="control-label"></label>
+                <select asp-for="FkWorkerTypeworkerTypeId" class="form-control" asp-items="ViewBag.FkWorkerTypeworkerTypeId"></select>
+                <span asp-validation-for="FkWorkerTypeworkerTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FkMessageCorrespondence" class="control-label"></label>
+                <select asp-for="FkMessageCorrespondence" class="form-control" asp-items="ViewBag.FkMessageCorrespondence"></select>
+                <span asp-validation-for="FkMessageCorrespondence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
