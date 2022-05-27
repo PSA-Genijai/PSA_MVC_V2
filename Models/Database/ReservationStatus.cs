@@ -16,6 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("res_status_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ResStatusId { get; set; }
         [Column("res_status")]
         [StringLength(255)]

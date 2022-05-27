@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PSA_MVC_V2.Models.Database.Reservation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Visos rezervacijos</h1>
+
+<p>
+    <a asp-action="Create">Kurti naują rezervaciją</a>
+</p>
+
+@if (this.Model == null)
+{
+    <p>Žinučių nebuvo rasta.</p>
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckinDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Children)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkRoomidRoomNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckinDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckoutDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adults)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Children)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkRoomidRoomNavigation.IdRoom)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ReservationId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ReservationId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReservationId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}

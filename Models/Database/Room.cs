@@ -34,6 +34,7 @@ namespace PSA_MVC_V2.Models.Database
         public string? RoomTitle { get; set; }
         [Key]
         [Column("id_Room")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdRoom { get; set; }
         [Column("fk_RoomTyperoom_type_id")]
         public int FkRoomTyperoomTypeId { get; set; }

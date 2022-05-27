@@ -16,6 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("message_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MessageId { get; set; }
         [Column("message_content")]
         [StringLength(255)]

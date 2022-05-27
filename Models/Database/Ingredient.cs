@@ -11,6 +11,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("ingredient_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IngredientId { get; set; }
         [Column("ingredient_title")]
         [StringLength(255)]

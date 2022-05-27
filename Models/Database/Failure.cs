@@ -11,6 +11,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("failure_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FailureId { get; set; }
         [Column("failure_description")]
         [StringLength(255)]

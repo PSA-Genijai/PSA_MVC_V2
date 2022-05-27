@@ -16,6 +16,7 @@ namespace PSA_MVC_V2.Models.Database
 
         [Key]
         [Column("worker_type_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WorkerTypeId { get; set; }
         [Column("worker_type")]
         [StringLength(255)]

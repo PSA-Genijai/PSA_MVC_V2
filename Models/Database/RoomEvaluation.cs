@@ -11,6 +11,7 @@ namespace PSA_MVC_V2.Models.Database
     {
         [Key]
         [Column("room_evaluation_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoomEvaluationId { get; set; }
         [Column("room_evaluation")]
         public int? RoomEvaluation1 { get; set; }
